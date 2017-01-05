@@ -160,7 +160,15 @@ define([
                         scaleLineWidth : this.scaleLineWidth,
 
                         //The scale line color
-                        scaleLineColor : this.scaleLineColor
+                        scaleLineColor : this.scaleLineColor,
+						// Get the rendered chart
+						animation: {
+							onComplete : lang.hitch(this, function () {
+								if (this.base64Attr) {
+									this._data.object.set(this.base64Attr, this.canvasNode.toDataURL());
+								}
+							})
+						}
                     })
                 };
 
